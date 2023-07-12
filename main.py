@@ -117,7 +117,6 @@ class CNNModel(object):
             with redirect_stdout(f):
                 self.model.summary()
 
-        print('===========', self.model_file_path, self.weight_initializers)
         # Train model
         es = EarlyStopping(monitor='val_loss', patience=25)
         mc = ModelCheckpoint(filepath=self.model_file_path, monitor='val_loss', save_best_only=True)
