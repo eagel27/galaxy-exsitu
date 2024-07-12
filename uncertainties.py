@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 from tensorflow.python.client import device_lib
 
 from constants import UNCERTAINTIES_RUN_PATH, MODELS_RUN_PATH, DATASET_1D, DATASET_MAPPING
-from nn_data import input_fn_split, input_2d_cnn_fn_split, get_data
-from nn_models import load_saved_model
+from dataloader.dataloader import input_fn_split, input_2d_cnn_fn_split, get_data
+from models.nn_models import load_saved_model
 from utilities import plot_with_median
 
 logging.basicConfig(format='%(asctime)s %(message)s',
@@ -78,7 +78,6 @@ def config_uncertainty_plot(ax, simulation, test_set_sim):
     # Shrink current axis by 20%
     box = ax.get_position()
     ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
-
     # Put a legend to the right of the current axis
     ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), fontsize=30)
     ax.set_xlabel('Percentage of probability volume')
@@ -90,14 +89,11 @@ def config_uncertainty_plot(ax, simulation, test_set_sim):
              horizontalalignment='center',
              verticalalignment='center',
              transform=ax.transAxes)
-
     ax.text(0.7, 0.1, '$\it{Overconfident}$',
              horizontalalignment='center',
              verticalalignment='center',
              transform=ax.transAxes)
-
     return ax
-
 
 
 if __name__ == '__main__':

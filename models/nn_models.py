@@ -9,7 +9,6 @@ from tensorflow_probability import distributions as tfd
 from tensorflow.keras.regularizers import l2
 
 
-
 def build_cnn_model(input_shape, mdn=False, weight_initializers=(None, None)):
     """
     Build a simple CNN.

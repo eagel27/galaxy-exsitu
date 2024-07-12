@@ -9,10 +9,10 @@ from tensorflow.python.client import device_lib
 from contextlib import redirect_stdout
 from constants import BATCHES, RESULTS_PATH, MDN, RUN_DIR, MODELS_RUN_PATH, DATASET_MAPPING, \
     DATASET_1D, INPUT_SHAPE, IGNORE_CHANNELS_MAPPING, MASK_RADIUS_MAPPING
-from nn_data import input_fn_split, input_2d_cnn_fn_split, get_num_examples, \
+from dataloader.dataloader import input_fn_split, input_2d_cnn_fn_split, get_num_examples, \
     compute_prior_whole_dataset, input_plots, get_data
-from nn_models import build_cnn_model, load_saved_model, loss_fn
-from nn_results import GraphPlotter
+from models.nn_models import build_cnn_model, load_saved_model
+from plots.nn_results_plots import GraphPlotter
 
 logging.basicConfig(format='%(asctime)s %(message)s',
                     level=os.environ.get("LOGLEVEL", "INFO"))

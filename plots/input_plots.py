@@ -1,14 +1,10 @@
-import os.path
-
+import os
 import matplotlib.pyplot as plt
 import copy
-import os 
-
-import numpy as np
 import pandas as pd
 
-from preprocess import *
-from constants import DATASET_1D, DATASET_MAPPING, GRADIENTS_RUN_PATH, INPUT_CORRELATION_PATH_RUN_PATH, \
+from dataloader.preprocess import *
+from ..constants import DATASET_1D, DATASET_MAPPING, GRADIENTS_RUN_PATH, INPUT_CORRELATION_PATH_RUN_PATH, \
     NORM_MAPPING, GRADIENTS_MAPPING
 
 
@@ -294,7 +290,7 @@ def save_correlations():
 
 
 if __name__ == '__main__':
-    from nn_data import input_2d_cnn_fn_split, input_fn_split, get_data
+    from dataloader.dataloader import input_2d_cnn_fn_split, input_fn_split, get_data
     input_fn = input_2d_cnn_fn_split
     if DATASET_1D:
         input_fn = input_fn_split

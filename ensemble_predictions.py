@@ -16,7 +16,7 @@ log = logging.getLogger("input_logger")
 
 
 def load_original_model(model_id, simulation, channels_str, mask_radius):
-    from nn_models import load_saved_model
+    from models.nn_models import load_saved_model
     model_path = os.path.join(MODELS_RUN_PATH,
                               'model_{}_{}_Channels_{}_MRadius_{}.h5'.format(
                                   model_id, simulation, channels_str, mask_radius))
@@ -26,7 +26,7 @@ def load_original_model(model_id, simulation, channels_str, mask_radius):
 
 def load_predictions(train_simulation, model_id, ignore_channels, mask_radius,
                      dataset_main):
-    from nn_data import input_fn_split, input_2d_cnn_fn_split
+    from dataloader.dataloader import input_fn_split, input_2d_cnn_fn_split
     channels_str = '_'.join(str(i) for i in {0, 1, 2, 3, 4}.difference(
             set(ignore_channels or ())))
 
@@ -111,7 +111,7 @@ def ensemble_predictions():
     Ensemble the predictions of all 5 trained models
     :return:
     """
-    from nn_data import compute_prior_whole_dataset
+    from dataloader.dataloader import compute_prior_whole_dataset
 
     for cross in (False, True):
         for train_simulation in ('TNG', 'EAGLE'):

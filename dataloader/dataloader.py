@@ -6,9 +6,9 @@ import pickle
 import tensorflow as tf
 import numpy as np
 
-from input_graphs import plot_original_maps, plot_galaxy_histograms
-from constants import (BATCHES, RESULTS_PATH, TNG_DATASET_SPLITS, EAGLE_DATASET_SPLITS, INPUT_SHAPE,
-                       TNG_BALANCED_DATASET_ALIGNS_PATH, EAGLE_BALANCED_DATASET_ALIGNS_PATH)
+from ..plots.input_plots import plot_original_maps, plot_galaxy_histograms
+from ..constants import (BATCHES, RESULTS_PATH, TNG_DATASET_SPLITS, EAGLE_DATASET_SPLITS, INPUT_SHAPE,
+                         TNG_BALANCED_DATASET_ALIGNS_PATH, EAGLE_BALANCED_DATASET_ALIGNS_PATH)
 from preprocess import per_channel_standardization, per_image_standardization, mask_whole_image, mask_outer_radius
 
 
@@ -219,7 +219,6 @@ def get_data(dataset, batches=10, get_obj_id=False):
     return images, y_true
 
 
-
 def get_data_with_objid(dataset, batches=10):
     data = dataset.take(batches)
     images, y_true, obj_id = [], [], []
@@ -278,7 +277,6 @@ def compute_prior_whole_dataset(dataset='TNG', split=None):
     plt.savefig('Prior.png')
     plt.close()
     return prior
-
 
 
 def input_plots(ds_set, save_dir, test=False, get_obj_ids=False):
