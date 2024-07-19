@@ -145,7 +145,10 @@ class RegressionPredictor(tf.keras.layers.Layer):
 
 
 class BYOLModel(tf.keras.Model):
-
+    """
+    Adapted from https://github.com/garder14/byol-tensorflow2
+    Based on https://arxiv.org/abs/2006.07733
+    """
     def __init__(self, input_dim=(128, 128, 5), features_input_dim=256, alpha=1, output_dim=1, **kwargs):
         super(BYOLModel, self).__init__(**kwargs)
         self.output_dim = output_dim
