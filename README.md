@@ -13,8 +13,4 @@ To test robustness across simulations:
 We manage to identify a robust set of inputs across the different sub-grid physics for predicting the ex-situ stellar mass fraction. 
 We use these inputs to train a self-supervised model on a mock dataset (MaNGIA) and then proceed to apply it for inference on MaNGA galaxies.
 
-
-
-
-
-
+![Figure1](https://github.com/user-attachments/assets/6d644975-bc2a-473e-b70c-06d758ee68a8)
