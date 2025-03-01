@@ -80,52 +80,29 @@ TNG_SNAPSHOT = 99
 BATCHES = 128
 MDN = True
 
-if DEBUG:
-    BASE_PATH = '/home/eirini/Documents/PhD/'
-else:
-    BASE_PATH = '/net/diva/scratch1/eirinia/projects'
+BASE_PATH = os.getenv("BASE_PATH")
 
+assert BASE_PATH, "BASE_PATH must be defined as env var"
 
 RESULTS_PATH = os.path.join(BASE_PATH, 'Results')
 
-
-# The path in Deimos for the high resolution maps as created by (Maan,Bottrell+)
-# Maps include: Stellar density, velocity, velocity dispersion
-KINETIC_MAPS_PATH = '/scratch/reginas/TNG_Hani'
-
 # The path in Deimos for the resampled high resolution data
 # that will be used as input to the NN
-TNG_INPUT_MAPS_PATH = '/scratch/eirinia/projects/GalaxyAccretion/Input/TNG100-1'
+TNG_INPUT_MAPS_PATH = os.getenv("TNG_INPUT_MAPS_PATH")
 
-if DEBUG:
-    STELLAR_ASSEMBLY_PATH = '/home/eirini/Documents/PhD/Data/IllustrisTNG/TNG100-1/' \
-                            'postprocessing/stellar_assembly/galaxies_{}.hdf5'
+assert TNG_INPUT_MAPS_PATH, "TNG_INPUT_MAPS_PATH must be defined as env var"
 
-    KINETIC_MAPS_PATH = '/home/eirini/Documents/PhD/Data/IllustrisTNG/TNG100-1/ResampledMaps/'
+STELLAR_ASSEMBLY_PATH = os.getenv("STELLAR_ASSEMBLY_PATH")
 
-    RESULTS_PATH = '/home/eirini/Documents/PhD/Results/Neural Networks/CNNs'
-    DATASET_RESULTS_PATH = '/home/eirini/Documents/PhD/Results/Datasets'
-else:
-    STELLAR_ASSEMBLY_PATH = '/net/diva/scratch1/eirinia/projects/Data/IllustrisTNG/' \
-                            'TNG100-1/postprocessing/stellar_assembly/galaxies_{}.hdf5'
+assert STELLAR_ASSEMBLY_PATH, "STELLAR_ASSEMBLY_PATH must be defined as env var"
 
-    KINETIC_MAPS_PATH = '/net/diva/scratch1/eirinia/projects/GalaxyAccretion/' \
-                        'TNG100-1/ResampledInput'
+DATASET_RESULTS_PATH = os.getenv("DATASET_RESULTS_PATH")
 
-    RESULTS_PATH = '/scratch/eirinia/projects/Results'
-    DATASET_RESULTS_PATH = '/scratch/eirinia/projects/Results/Datasets'
+assert DATASET_RESULTS_PATH, "DATASET_RESULTS_PATH must be defined as env var"
 
+BASE_PATH_MAPS = os.getenv("DATASET_RESULTS_PATH")
 
-KINETIC_MAPS_SNAPSHOT_DIR = os.path.join(KINETIC_MAPS_PATH, '0' + str(TNG_SNAPSHOT))
-KINETIC_MAPS_SPLIT_SNAPSHOT_DIR = os.path.join(KINETIC_MAPS_PATH, '0' + str(TNG_SNAPSHOT) + '_split')
-
-TNG_INPUT_SNAPSHOT_DIR = os.path.join(TNG_INPUT_MAPS_PATH, '0' + str(TNG_SNAPSHOT))
-STELLAR_ASSEMBLY_FILE_PATH = STELLAR_ASSEMBLY_PATH.format('0' + str(TNG_SNAPSHOT))
-
-RESAMPLE_ZOOM = 0.25
-RESAMPLE_ORDER = 3
-
-MEAN_STD_ARRAYS_PATH = os.path.join(KINETIC_MAPS_PATH, 'Mean_std_arrays')
+assert DATASET_RESULTS_PATH, "DATASET_RESULTS_PATH must be defined as env var"
 
 # Experiment values
 IGNORE_CHANNELS = ()
@@ -134,7 +111,6 @@ MASK_RADIUS = 100
 # Change these for different runs
 EAGLE_MATCH_TNG = True
 RUN_DIR = 'EAGLE_TNGlike'
-
 TNG_DIR = 'IllustrisTNG'
 
 if EAGLE_MATCH_TNG:
@@ -156,10 +132,6 @@ else:
     EAGLE_DIR = 'EAGLE'
     EAGLE_SIM = 'RefL0100N1504'
 
-if DEBUG:
-    BASE_PATH_MAPS = '/home/eirini/Documents/PhD/'
-else:
-    BASE_PATH_MAPS = '/net/diva/scratch1/eirinia/projects'
 
 little_h = 0.6774
 SPLITS_FILENAME = 'dataset_splits{}.pkl'.format('_1D' if DATASET_1D else '')
@@ -184,7 +156,6 @@ TNG_STELLAR_ASSEMBLY_PATH = os.path.join(TNG_STELLAR_ASSEMBLY_PATH_BASE, 'galaxi
 
 MEAN_STD_ARRAYS_PATH = os.path.join(DATA_BASE_PATH, 'Mean_std_arrays')
 
-
 MODELS_PATH = os.path.join(RESULTS_PATH, 'saved_models')
 MODELS_RUN_PATH = os.path.join(MODELS_PATH, RUN_DIR)
 
@@ -205,27 +176,8 @@ DATASET_1D_RUN_PATH = DATASET_1D_PATH
 if EAGLE_MATCH_TNG:
     DATASET_1D_RUN_PATH = os.path.join(DATASET_1D_PATH, RUN_DIR)
 
-CORRELATIONS_1D_RESULTS_PATH = os.path.join(RESULTS_PATH, '1D_Correlations')
-CORRELATIONS_1D_RESULTS_RUN_PATH = CORRELATIONS_1D_RESULTS_PATH
-if EAGLE_MATCH_TNG:
-    CORRELATIONS_1D_RESULTS_RUN_PATH = os.path.join(CORRELATIONS_1D_RESULTS_PATH, RUN_DIR)
-
-
-CATALOG_RESULTS_PATH = os.path.join(RESULTS_PATH, 'Catalog_Results_Lim')
-CATALOG_RESULTS_RUN_PATH = os.path.join(CATALOG_RESULTS_PATH, RUN_DIR)
-CATALOG_MODELS_PATH = os.path.join(CATALOG_RESULTS_RUN_PATH, 'Models')
-
 CNN_RESULTS_PATH = os.path.join(RESULTS_PATH, 'CNN')
 CNN_RESULTS_RUN_PATH = os.path.join(CNN_RESULTS_PATH, RUN_DIR)
-
-UMAPS_RESULTS_PATH = os.path.join(RESULTS_PATH, 'UMAPs')
-UMAPS_RESULTS_RUN_PATH = os.path.join(UMAPS_RESULTS_PATH, RUN_DIR)
-UMAPS_RESULTS_RUN_PATH_DIVA = os.path.join(BASE_PATH_MAPS, 'Results',
-                                           'UMAPs', RUN_DIR)
-
-RUN_DIVA = True
-if RUN_DIVA:
-    UMAPS_RESULTS_RUN_PATH = UMAPS_RESULTS_RUN_PATH_DIVA
 
 RESULTS_DA_PATH = os.path.join(RESULTS_PATH, 'Domain_Adaptation')
 MODELS_DA_RUN_PATH = os.path.join(MODELS_PATH, 'Domain_Adaptation', RUN_DIR)
