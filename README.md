@@ -1,7 +1,7 @@
 # Inferring the effect of mergers on a galaxy's stellar mass with SBI
 A systematic approach for inferring the global ex-situ stellar mass fraction for 10,000 nearby galaxies from the MaNGA survey using simulation-based inference (SBI). In particular, we construct probabilistic CNNs that are trained on cosmological simulations. The models are calibrated across two different cosmological simulations before application to real galaxy data.
 
-# Install
+## Install
 
 
 ```
