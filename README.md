@@ -11,6 +11,18 @@ pip install -r requirements.txt
 ```
 
 
+## Dataset setup
+
+The files of the cosmological simulations used for the cross-training can be created using the repo: 
+
+https://github.com/eagel27/cosmological_sims_maps_creator
+
+Once the files are ready, you can run the following command to build each dataset:
+```
+cd datasets
+tfds build --data_dir=path/to/dataset_files
+```
+
 ## Background
 The hierarchical model of galaxy evolution suggests that mergers have a substantial impact on the intricate processes that drive stellar assembly within a galaxy. However, accurately measuring the contribution of accretion to a galaxy’s total stellar mass and its balance with in situ star formation poses a persistent challenge, as it is neither directly observable nor easily inferred from observational properties. Using data from MaNGA, we present theory-motivated predictions for the fraction of stellar mass originating from mergers in a statistically significant sample of nearby galaxies. This is done by employing a robust machine learning model trained on mock MaNGA analogues (MaNGIA), in turn obtained from a cosmological simulation (TNG50). 
 
